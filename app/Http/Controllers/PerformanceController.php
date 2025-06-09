@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Performance;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PerformanceController extends Controller
@@ -56,4 +57,36 @@ class PerformanceController extends Controller
 
         return redirect()->route('performances.index')->with('success', 'Performance wurde aktualisiert.');
     }
+
+    public function bulkAddFiveMinutes(Request $request)
+    {
+        $request->validate([
+            'performance_ids' => 'required|array',
+            'performance_ids.*' => 'integer|exists:performances,id',
+            'direction' => 'required|in:add,subtract',
+        ]);
+
+        $direction = $request->input('direction');
+
+        Performance::whereIn('id', $request->performance_ids)
+            ->get()
+            ->each(function ($performance) use ($direction) {
+                $start = Carbon::parse($performance->start_time);
+                $end = Carbon::parse($performance->end_time);
+
+                if ($direction === 'add') {
+                    $performance->start_time = $start->addMinutes(5);
+                    $performance->end_time = $end->addMinutes(5);
+                } elseif ($direction === 'subtract') {
+                    $performance->start_time = $start->subMinutes(5);
+                    $performance->end_time = $end->subMinutes(5);
+                }
+
+                $performance->save();
+            });
+
+        return redirect()->route('performances.index')
+            ->with('success', 'Zeiten wurden angepasst: ' . ($direction === 'add' ? '+5 Min' : '-5 Min'));
+    }
+
 }

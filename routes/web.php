@@ -19,6 +19,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/performances/{performance}/edit', [PerformanceController::class, 'edit'])->name('performances.edit');
     Route::put('/performances/{performance}', [PerformanceController::class, 'update'])->name('performances.update');
     Route::post('/performances', [PerformanceController::class, 'store'])->name('performances.store');
+
+    # Bulk Methods
+    Route::post('/performances/bulk-add5min', [PerformanceController::class, 'bulkAddFiveMinutes'])
+        ->name('performances.bulkAddFiveMinutes');
 });
 
 require __DIR__.'/auth.php';
