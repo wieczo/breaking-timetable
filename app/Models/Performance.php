@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Performance extends Model
 {
-    protected $fillable = ['start_time', 'end_time', 'title'];
+    protected $fillable = ['start_time', 'end_time', 'title', 'status'];
 }

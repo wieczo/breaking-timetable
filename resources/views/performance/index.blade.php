@@ -10,19 +10,33 @@
 
         <div class="overflow-x-auto bg-white shadow rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+                <thead class="bg-white">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Titel</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ende</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Titel
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start
+                    </th>
+                    @auth
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Aktionen
+                        </th>
+                    @endauth
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($performances as $performance)
-                    <tr class="odd:bg-red-200 even:bg-blue-200 hover:bg-yellow-100">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $performance->title }}</td>
+                    <tr class="{{
+    $performance->status === 'active' ? 'bg-orange-100 hover:bg-orange-300' :
+    ($performance->status === 'upcoming' ? 'bg-green-100 hover:bg-green-300' : 'odd:bg-gray-50 even:bg-white hover:bg-gray-100')
+}}
+                    ">
+                        <td class="px-6 py-4  text-sm text-gray-700">{{ $performance->title }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ \Carbon\Carbon::parse($performance->start_time)->format('H:i') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ \Carbon\Carbon::parse($performance->end_time)->format('H:i') }}</td>
+
+                        @auth
+                            <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <a href="{{ route('performances.edit', $performance) }}">Bearbeiten</a></td>
+                        @endauth
                     </tr>
                 @endforeach
                 </tbody>

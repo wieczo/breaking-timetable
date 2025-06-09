@@ -16,6 +16,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/performances/create', [PerformanceController::class, 'create'])->name('performances.create');
+    Route::get('/performances/{performance}/edit', [PerformanceController::class, 'edit'])->name('performances.edit');
+    Route::put('/performances/{performance}', [PerformanceController::class, 'update'])->name('performances.update');
     Route::post('/performances', [PerformanceController::class, 'store'])->name('performances.store');
 });
 
