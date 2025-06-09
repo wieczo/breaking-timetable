@@ -48,7 +48,7 @@ class ImportPerformances extends Command
             ]);
         }
 
-        $this->info("Users imported successfully.");
+        $this->info("Performances imported successfully.");
         return 0;
     }
 }
