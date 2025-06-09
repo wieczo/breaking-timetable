@@ -26,8 +26,8 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($performances as $performance)
                     <tr class="{{
-    $performance->status === 'active' ? 'bg-orange-100 hover:bg-orange-300' :
-    ($performance->status === 'upcoming' ? 'bg-green-100 hover:bg-green-300' : 'odd:bg-gray-50 even:bg-white hover:bg-gray-100')
+    $performance->status === 'upcoming' ? 'bg-orange-100 hover:bg-orange-300' :
+    ($performance->status === 'active' ? 'bg-green-100 hover:bg-green-300' : 'odd:bg-gray-50 even:bg-white hover:bg-gray-100')
 }}
                     ">
                         <td class="px-6 py-4  text-sm text-gray-700">{{ $performance->title }}</td>
