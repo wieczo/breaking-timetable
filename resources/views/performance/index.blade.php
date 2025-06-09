@@ -1,8 +1,18 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto py-10 px-6">
         <h1 class="text-2xl font-bold mb-6">Alle Einträge</h1>
+        <div class="mb-6 flex flex-wrap gap-6 text-base">
+            <div class="flex items-center space-x-3">
+                <div class="w-6 h-6 rounded bg-orange-400 border border-orange-600 shadow-inner"></div>
+                <span class="text-orange-900 font-medium">Bevorstehende Kategorie</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="w-6 h-6 rounded bg-green-400 border border-green-600 shadow-inner"></div>
+                <span class="text-green-900 font-medium">Aktuelle Kategorie</span>
+            </div>
+        </div>
 
-        @if(session('success'))
+    @if(session('success'))
             <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
                 {{ session('success') }}
             </div>
