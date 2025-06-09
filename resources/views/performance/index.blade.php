@@ -73,7 +73,7 @@
                         <label for="direction" class="text-sm font-medium text-gray-700">Aktion:</label>
 
                         <select name="direction" id="direction"
-                                class="appearance-none bg-white border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 px-4 py-2 shadow-sm">
+                                class="w-48 appearance-none bg-white border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 px-4 py-2 shadow-sm">
                             <option value="add">+5 Minuten</option>
                             <option value="subtract">-5 Minuten</option>
                         </select>
