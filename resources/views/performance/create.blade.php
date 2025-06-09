@@ -1,25 +1,13 @@
 <x-app-layout>
-    <h1>Neuen Eintrag erstellen</h1>
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">Neuer Performance-Eintrag</h2>
+    </x-slot>
 
-    <form method="POST" action="{{ route('performances.store') }}">
-        @csrf
-        <label>Titel</label>
-        <input type="text" name="title" required>
-
-        <label>Startzeit</label>
-        <input type="datetime-local" name="start_time" required>
-
-        <label>Endzeit</label>
-        <input type="datetime-local" name="end_time" required>
-
-        <label>Status</label>
-        <select name="status" required>
-            <option value="upcoming">Bevorstehend</option>
-            <option value="active">Aktiv</option>
-            <option value="done">Abgeschlossen</option>
-        </select>
-
-        <button type="submit">Speichern</button>
-    </form>
+    <div class="py-8">
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded shadow-md">
+            <form method="POST" action="{{ route('performances.store') }}" class="space-y-6">
+                @include('performance._form', ['buttonText' => 'Erstellen'])
+            </form>
+        </div>
+    </div>
 </x-app-layout>
-
