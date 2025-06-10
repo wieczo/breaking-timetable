@@ -14,4 +14,4 @@ The project is using the MIT license, see LICENSE file.
 # Deploying
 
 See the deployment folder for a docker-compose.yml, the corresponding Dockerfile for the Laravel container and an nginx 
-config.
+config. See the README.md in the deployment folder.
